@@ -1,0 +1,9 @@
+{
+  "extends": ["airbnb-typescript"],
+  "rules": {
+    "import/prefer-default-export": "warn"
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  }
+}
