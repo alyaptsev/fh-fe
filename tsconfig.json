@@ -9,5 +9,11 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "allowJs": false,
-  }
+  },
+  "include": [
+    "src"
+  ],
+  "files": [
+    "src/custom.d.ts",
+  ]
 }
