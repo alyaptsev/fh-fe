@@ -7,5 +7,6 @@ export const globalStyles = css`
   body {
     margin: 0;
     font-family: 'Inter', sans-serif;
+    color: #2a333d;
   }
 `;

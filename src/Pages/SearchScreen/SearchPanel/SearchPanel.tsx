@@ -8,25 +8,39 @@ import {
   Button,
   WidgetsContainer,
 } from './SearchPanel.styled';
+import GuestModal from '../GuestsModal';
 import { SearchPanelProps } from './SearchPanel.types';
 
 const SearchPanel: React.FC<SearchPanelProps> = ({
   className,
-}) => (
-  <StyledSearchPanel className={className}>
-    <Input
-      placeholder="Type city, place, or hotel name"
-      leftIcon={<Icon icon="map-point" />}
-      rightIcon={<Icon icon="navigation" />}
-    />
+}) => {
+  const [guestModalOpened, setGuestModalOpened] = React.useState(false);
 
-    <WidgetsContainer>
-      <DoubleDatePicker />
-      <CounterButton>2</CounterButton>
-    </WidgetsContainer>
+  const openGuestModal = () => setGuestModalOpened(true);
 
-    <Button>Search</Button>
-  </StyledSearchPanel>
-);
+  const closeGuestModal = () => setGuestModalOpened(false);
+
+  return (
+    <StyledSearchPanel className={className}>
+      <Input
+        placeholder="Type city, place, or hotel name"
+        leftIcon={<Icon icon="map-point" />}
+        rightIcon={<Icon icon="navigation" />}
+      />
+
+      <WidgetsContainer>
+        <DoubleDatePicker />
+        <CounterButton onClick={openGuestModal}>2</CounterButton>
+      </WidgetsContainer>
+
+      <Button>Search</Button>
+
+      <GuestModal
+        isOpened={guestModalOpened}
+        onClose={closeGuestModal}
+      />
+    </StyledSearchPanel>
+  );
+};
 
 export default SearchPanel;
