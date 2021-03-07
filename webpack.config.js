@@ -15,6 +15,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
   },
   resolve: {
+    alias: {
+      '@ui': path.join(__dirname, 'src', 'ui'),
+    },
     extensions: ['.ts', '.tsx', '.js'],
   },
   module: {

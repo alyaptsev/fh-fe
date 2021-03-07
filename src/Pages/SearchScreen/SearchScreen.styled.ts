@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import SearchPanel from './SearchPanel';
 
 export const StyledSeacrhScreen = styled.div`
   position: relative;
@@ -27,6 +28,10 @@ export const Tagline = styled.h2`
   line-height: 36px;
   margin: 86px 0 0 16px;
   max-width: 223px;
+`;
+
+export const StyledSearchPanel = styled(SearchPanel)`
+  margin: 146px 8px 0;
 `;
 
 export const Partners = styled.div`

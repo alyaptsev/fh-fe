@@ -7,6 +7,7 @@ import {
   Tagline,
   Partners,
   PartnerLogo,
+  StyledSearchPanel,
 } from './SearchScreen.styled';
 import backgroundImg from './assets/background.svg';
 import logoImg from './assets/logo.svg';
@@ -25,6 +26,8 @@ const SearchScreen: React.FC = () => (
       </LogoLink>
 
       <Tagline>Find the perfect deal, always.</Tagline>
+
+      <StyledSearchPanel />
 
       <Partners>
         <PartnerLogo alt="partner logo: expedia" src={expediaImg} />

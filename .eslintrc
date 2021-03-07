@@ -1,7 +1,8 @@
 {
   "extends": ["airbnb-typescript"],
   "rules": {
-    "import/prefer-default-export": "warn"
+    "import/prefer-default-export": "warn",
+    "react/prop-types": "off"
   },
   "parserOptions": {
     "project": "./tsconfig.json"

@@ -9,6 +9,10 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "allowJs": false,
+    "baseUrl": "./",
+    "paths": {
+      "@ui/*": ["src/ui/*"]
+    }
   },
   "include": [
     "src"
