@@ -25,4 +25,5 @@ export const IconWrapper = styled.span<{ iconSize: string }>`
 `;
 
 export const StyledObject = styled.object`
+  pointer-events: none;
 `;
