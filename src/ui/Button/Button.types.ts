@@ -14,7 +14,7 @@ type ButtonSize = (
 
 export interface ButtonProps {
   className?: string,
-  theme?: ButtonTheme,
+  buttonTheme?: ButtonTheme,
   size?: ButtonSize,
   onClick?: React.MouseEventHandler<HTMLButtonElement>
 }

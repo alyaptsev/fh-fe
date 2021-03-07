@@ -4,14 +4,14 @@ import { ButtonProps } from './Button.types';
 
 const Button: React.FC<ButtonProps> = ({
   className,
-  theme = 'primary',
+  buttonTheme = 'primary',
   size = 'm',
   onClick,
   children,
 }) => (
   <StyledButton
     className={className}
-    buttonTheme={theme}
+    buttonTheme={buttonTheme}
     buttonSize={size}
     onClick={onClick}
   >
