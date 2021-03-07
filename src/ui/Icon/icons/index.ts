@@ -1,6 +1,7 @@
 import calendar from './calendar.svg';
 import customers from './customers.svg';
 import deleteIcon from './delete.svg';
+import deleteRedIcon from './delete-red.svg';
 import downArrow from './down_arrow.svg';
 import mapPoint from './map_point.svg';
 import minus from './minus.svg';
@@ -12,6 +13,7 @@ const icons = {
   calendar,
   customers,
   delete: deleteIcon,
+  'delete-red': deleteRedIcon,
   'down-arrow': downArrow,
   'map-point': mapPoint,
   minus,
