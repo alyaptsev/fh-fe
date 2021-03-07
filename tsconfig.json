@@ -11,7 +11,8 @@
     "allowJs": false,
     "baseUrl": "./",
     "paths": {
-      "@ui/*": ["src/ui/*"]
+      "@ui/*": ["src/ui/*"],
+      "@hooks/*": ["src/hooks/*"],
     }
   },
   "include": [
