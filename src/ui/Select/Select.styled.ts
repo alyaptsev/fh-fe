@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 export const SelectWrapper = styled.div`
   display: inline-flex;
   position: relative;
+  min-width: 100px;
 `;
 
 export const StyledSelect = styled.select`
@@ -15,6 +16,7 @@ export const StyledSelect = styled.select`
   font-size: 16px;
   font-weight: 600;
   line-height: 20px;
+  width: 100%;
 
   -webkit-appearance: none;
   -moz-appearance: none;
