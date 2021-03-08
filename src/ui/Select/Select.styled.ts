@@ -38,4 +38,5 @@ export const Arrow = styled.span`
   right: 8px;
   top: 50%;
   transform: translateY(-12px);
+  pointer-events: none;
 `;
