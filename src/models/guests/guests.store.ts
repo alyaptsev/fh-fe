@@ -4,6 +4,8 @@ import {
   removeRoom,
   setRoomAdults,
   setRoomChildren,
+  setRoomChildAge,
+  deleteRoomChild,
   resetGuests,
 } from './guests.actions';
 import { RoomsMap } from './guests.types';
@@ -77,6 +79,33 @@ export const $roomsMap = guestsDomain
       [room.title]: {
         ...room,
         children: newChildren,
+      },
+    };
+  })
+  .on(setRoomChildAge, (state, payload) => {
+    const room = state[payload.id];
+
+    return {
+      ...state,
+      [room.title]: {
+        ...room,
+        children: room.children
+          .slice(0, payload.idx)
+          .concat(payload.value)
+          .concat(room.children.slice(payload.idx + 1)),
+      },
+    };
+  })
+  .on(deleteRoomChild, (state, payload) => {
+    const room = state[payload.id];
+
+    return {
+      ...state,
+      [room.title]: {
+        ...room,
+        children: room.children
+          .slice(0, payload.idx)
+          .concat(room.children.slice(payload.idx + 1)),
       },
     };
   })

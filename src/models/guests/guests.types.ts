@@ -17,3 +17,14 @@ export interface SetChildrenEvent {
   id: string,
   value: number,
 }
+
+export interface SetRoomChildAgeEvent {
+  id: string,
+  idx: number,
+  value: number,
+}
+
+export interface DeleteRoomChildEvent {
+  id: string,
+  idx: number,
+}

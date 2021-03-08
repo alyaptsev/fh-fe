@@ -6,6 +6,8 @@ import {
   removeRoom,
   setRoomAdults,
   setRoomChildren,
+  setRoomChildAge,
+  deleteRoomChild,
 } from '@models/guests';
 import {
   RemoveButton,
@@ -38,9 +40,13 @@ const Room: React.FC<RoomProps> = ({
 
   const onChildrenChange = (value: number) => setRoomChildren({ id: room.title, value });
 
-  const onChildDelete = (idx: number) => {};
+  const onChildDelete = (idx: number) => deleteRoomChild({ id: room.title, idx });
 
-  const onChildAge = (idx: number, age: number) => {};
+  const onChildAge = (idx: number, value: number) => setRoomChildAge({
+    id: room.title,
+    idx,
+    value: Number(value),
+  });
 
   return (
     <StyledRoom className={className}>
@@ -69,20 +75,20 @@ const Room: React.FC<RoomProps> = ({
         />
       </GuestCounter>
 
-      <ChildrenAges>
-        <StyledChildrenAge
-          idx={0}
-          title="Child 1"
-          onDelete={onChildDelete}
-          onAge={onChildAge}
-        />
-        <StyledChildrenAge
-          idx={1}
-          title="Child 2"
-          onDelete={onChildDelete}
-          onAge={onChildAge}
-        />
-      </ChildrenAges>
+      {Boolean(room.children.length) && (
+        <ChildrenAges>
+          {room.children.map((age, idx) => (
+            <StyledChildrenAge
+              idx={idx}
+              age={age}
+              title={`Child ${idx + 1}`}
+              onDelete={onChildDelete}
+              onAge={onChildAge}
+            />
+          ))}
+        </ChildrenAges>
+      )}
+
     </StyledRoom>
   );
 };
