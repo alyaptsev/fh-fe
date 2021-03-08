@@ -16,7 +16,8 @@ export interface ButtonProps {
   className?: string,
   buttonTheme?: ButtonTheme,
   size?: ButtonSize,
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
+  onClick?: React.MouseEventHandler<HTMLButtonElement>,
+  disabled?: boolean,
 }
 
 export interface StyledButtonProps {

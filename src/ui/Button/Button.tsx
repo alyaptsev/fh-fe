@@ -7,6 +7,7 @@ const Button: React.FC<ButtonProps> = ({
   buttonTheme = 'primary',
   size = 'm',
   onClick,
+  disabled,
   children,
 }) => (
   <StyledButton
@@ -14,6 +15,7 @@ const Button: React.FC<ButtonProps> = ({
     buttonTheme={buttonTheme}
     buttonSize={size}
     onClick={onClick}
+    disabled={disabled}
   >
     {children}
   </StyledButton>
