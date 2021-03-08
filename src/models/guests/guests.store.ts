@@ -12,8 +12,8 @@ import {
 import { RoomsMap } from './guests.types';
 
 const initialStore: RoomsMap = {
-  Room1: {
-    title: 'Room1',
+  'Room 1': {
+    title: 'Room 1',
     adults: 1,
     children: [],
   },
@@ -39,7 +39,7 @@ export const $roomsMap = guestsDomain
 
     // Can't be more than 8 rooms
     if (roomsCount < 8) {
-      const newRoomTitle = `Room${roomsCount + 1}`;
+      const newRoomTitle = `Room ${roomsCount + 1}`;
 
       return {
         ...state,
