@@ -4,6 +4,8 @@ import Modal from '@ui/Modal';
 import Icon from '@ui/Icon';
 import {
   $rooms,
+  $roomsCount,
+  $guestsCount,
   resetGuests,
   addRoom,
 } from '@models/guests';
@@ -16,6 +18,7 @@ import {
   WideButton,
   IconInButton,
   StyledRoom,
+  GuestsCounts,
 } from './GuestsModal.styled';
 import { GuestsModalProps } from './GuestsModal.types';
 
@@ -24,6 +27,9 @@ const GuestsModal: React.FC<GuestsModalProps> = ({
   onClose,
 }) => {
   const rooms = useStore($rooms);
+  const roomsCount = useStore($roomsCount);
+  const guestsCount = useStore($guestsCount);
+  const counts = `${roomsCount} rooms • ${guestsCount} guests`;
 
   const onModalClose = () => {
     resetGuests();
@@ -57,6 +63,7 @@ const GuestsModal: React.FC<GuestsModalProps> = ({
             size="l"
             buttonTheme="outlined"
             onClick={onAddRoomClick}
+            disabled={roomsCount >= 8}
           >
             <IconInButton
               icon="plus"
@@ -73,6 +80,7 @@ const GuestsModal: React.FC<GuestsModalProps> = ({
               size="m"
             />
             Search
+            <GuestsCounts>{counts}</GuestsCounts>
           </WideButton>
         </Footer>
       </GuestsModalWrapper>

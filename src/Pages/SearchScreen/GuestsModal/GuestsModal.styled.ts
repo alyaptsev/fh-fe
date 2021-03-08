@@ -68,3 +68,11 @@ export const IconInButton = styled(UIIcon)`
 export const StyledRoom = styled(Room)`
   margin-bottom: 22px;
 `;
+
+export const GuestsCounts = styled.span`
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #fff;
+  margin-left: 5px;
+`;

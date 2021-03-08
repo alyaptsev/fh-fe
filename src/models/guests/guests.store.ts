@@ -112,3 +112,12 @@ export const $roomsMap = guestsDomain
   .reset(resetGuests);
 
 export const $rooms = $roomsMap.map((roomsMap) => Object.values(roomsMap));
+
+export const $roomsCount = $rooms.map((rooms) => rooms.length);
+
+export const $guestsCount = $rooms.map(
+  (rooms) => rooms.reduce(
+    (count, room) => count + room.adults + room.children.length,
+    0,
+  ),
+);
