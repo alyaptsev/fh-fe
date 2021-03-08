@@ -1,5 +1,6 @@
 import { guestsDomain } from './guests.domain';
 import {
+  setGuestsState,
   addRoom,
   removeRoom,
   setRoomAdults,
@@ -20,6 +21,19 @@ const initialStore: RoomsMap = {
 
 export const $roomsMap = guestsDomain
   .createStore<RoomsMap>(initialStore)
+  .on(setGuestsState, (_, serializedState) => serializedState
+    .split('|')
+    .map((room, idx) => {
+      const [adults, serializedChildren] = room.split(':');
+      const children = serializedChildren ? serializedChildren.split(',').map(Number) : [];
+
+      return {
+        title: `Room ${idx + 1}`,
+        adults: Number(adults),
+        children,
+      };
+    })
+    .reduce((acc, room) => ({ ...acc, [room.title]: room }), {}))
   .on(addRoom, (state) => {
     const roomsCount = Object.keys(state).length;
 
@@ -120,4 +134,13 @@ export const $guestsCount = $rooms.map(
     (count, room) => count + room.adults + room.children.length,
     0,
   ),
+);
+
+export const $serializedGuests = $rooms.map(
+  (rooms) => rooms.map((room) => {
+    const adults = room.adults.toString();
+    const children = room.children.join(',');
+
+    return children ? adults.concat(':', children) : adults;
+  }).join('|'),
 );

@@ -6,6 +6,8 @@ import {
   DeleteRoomChildEvent,
 } from './guests.types';
 
+export const setGuestsState = guestsDomain.createEvent<string>();
+
 export const addRoom = guestsDomain.createEvent();
 
 export const removeRoom = guestsDomain.createEvent<string>();

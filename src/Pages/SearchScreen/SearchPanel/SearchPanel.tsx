@@ -1,7 +1,12 @@
 import React from 'react';
+import { useStore } from 'effector-react';
 import Icon from '@ui/Icon';
 import CounterButton from '@ui/CounterButton';
 import DoubleDatePicker from '@ui/DoubleDatePicker';
+import {
+  $guestsCount,
+  setGuestsState,
+} from '@models/guests';
 import {
   StyledSearchPanel,
   Input,
@@ -15,10 +20,16 @@ const SearchPanel: React.FC<SearchPanelProps> = ({
   className,
 }) => {
   const [guestModalOpened, setGuestModalOpened] = React.useState(false);
+  const guestsCount = useStore($guestsCount);
 
   const openGuestModal = () => setGuestModalOpened(true);
 
   const closeGuestModal = () => setGuestModalOpened(false);
+
+  React.useEffect(() => {
+    // TASK REQUIREMENTS: here we can set state from url
+    setGuestsState('1');
+  }, []);
 
   return (
     <StyledSearchPanel className={className}>
@@ -30,7 +41,7 @@ const SearchPanel: React.FC<SearchPanelProps> = ({
 
       <WidgetsContainer>
         <DoubleDatePicker />
-        <CounterButton onClick={openGuestModal}>2</CounterButton>
+        <CounterButton onClick={openGuestModal}>{guestsCount}</CounterButton>
       </WidgetsContainer>
 
       <Button>Search</Button>

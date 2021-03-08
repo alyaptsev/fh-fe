@@ -60,4 +60,6 @@ export const StyledButton = styled.button<StyledButtonProps>`
   &::-moz-focus-inner {
     border: 0;
   }
+
+  /* TODO: set disabled state */
 `;

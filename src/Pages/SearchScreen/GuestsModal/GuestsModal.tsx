@@ -6,6 +6,7 @@ import {
   $rooms,
   $roomsCount,
   $guestsCount,
+  $serializedGuests,
   resetGuests,
   addRoom,
 } from '@models/guests';
@@ -33,6 +34,12 @@ const GuestsModal: React.FC<GuestsModalProps> = ({
 
   const onModalClose = () => {
     resetGuests();
+    onClose();
+  };
+
+  const onSubmit = () => {
+    // TASK REQUIREMENTS: here we have serialized state and can set it to url
+    console.log($serializedGuests.getState());
     onClose();
   };
 
@@ -74,7 +81,10 @@ const GuestsModal: React.FC<GuestsModalProps> = ({
         </Content>
 
         <Footer>
-          <WideButton size="l">
+          <WideButton
+            size="l"
+            onClick={onSubmit}
+          >
             <IconInButton
               icon="search"
               size="m"
