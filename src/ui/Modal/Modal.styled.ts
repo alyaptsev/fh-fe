@@ -29,6 +29,7 @@ export const FixedContainer = styled.div<FixedContainerProps>`
   right: 0;
   bottom: 0;
   z-index: 1000;
+  overflow: auto;
 
   ${({ openStatus }) => {
     switch (openStatus) {
