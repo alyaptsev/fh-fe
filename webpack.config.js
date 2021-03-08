@@ -18,6 +18,7 @@ module.exports = {
     alias: {
       '@ui': path.join(__dirname, 'src', 'ui'),
       '@hooks': path.join(__dirname, 'src', 'hooks'),
+      '@models': path.join(__dirname, 'src', 'models'),
     },
     extensions: ['.ts', '.tsx', '.js'],
   },
