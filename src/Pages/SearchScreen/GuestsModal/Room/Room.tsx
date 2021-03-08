@@ -4,6 +4,8 @@ import Counter from '@ui/Counter';
 import {
   $rooms,
   removeRoom,
+  setRoomAdults,
+  setRoomChildren,
 } from '@models/guests';
 import {
   RemoveButton,
@@ -14,6 +16,8 @@ import {
   StyledChildrenAge,
 } from './Room.styled';
 import { RoomProps } from './Room.types';
+
+const GUESTS_LIMIT = 5;
 
 const Room: React.FC<RoomProps> = ({
   id,
@@ -26,11 +30,13 @@ const Room: React.FC<RoomProps> = ({
     fn: (rooms, [roomId]) => rooms.find(({ title }) => title === roomId),
   })!;
 
+  const guestsCount = room.adults + room.children.length;
+
   const onRoomRemove = () => removeRoom(room.title);
 
-  const onAdultChange = (value: number) => {};
+  const onAdultChange = (value: number) => setRoomAdults({ id: room.title, value });
 
-  const onChildrenChange = (value: number) => {};
+  const onChildrenChange = (value: number) => setRoomChildren({ id: room.title, value });
 
   const onChildDelete = (idx: number) => {};
 
@@ -46,8 +52,9 @@ const Room: React.FC<RoomProps> = ({
       <GuestCounter>
         Adults
         <Counter
+          value={room.adults}
           minValue={1}
-          maxValue={5}
+          maxValue={guestsCount >= GUESTS_LIMIT ? room.adults : 5}
           onChange={onAdultChange}
         />
       </GuestCounter>
@@ -55,8 +62,9 @@ const Room: React.FC<RoomProps> = ({
       <GuestCounter>
         Children
         <Counter
+          value={room.children.length}
           minValue={0}
-          maxValue={3}
+          maxValue={guestsCount >= GUESTS_LIMIT ? room.children.length : 3}
           onChange={onChildrenChange}
         />
       </GuestCounter>

@@ -2,6 +2,8 @@ import { guestsDomain } from './guests.domain';
 import {
   addRoom,
   removeRoom,
+  setRoomAdults,
+  setRoomChildren,
   resetGuests,
 } from './guests.actions';
 import { RoomsMap } from './guests.types';
@@ -19,6 +21,7 @@ export const $roomsMap = guestsDomain
   .on(addRoom, (state) => {
     const roomsCount = Object.keys(state).length;
 
+    // Can't be more than 8 rooms
     if (roomsCount < 8) {
       const newRoomTitle = `Room${roomsCount + 1}`;
 
@@ -38,6 +41,44 @@ export const $roomsMap = guestsDomain
     const { [title]: remove, ...rest } = state;
 
     return rest;
+  })
+  .on(setRoomAdults, (state, payload) => {
+    const room = state[payload.id];
+    const newRoom = {
+      ...room,
+      adults: payload.value,
+    };
+    const guestsCount = newRoom.adults + newRoom.children.length;
+
+    // Can't be more than 5 guests in room
+    if (guestsCount > 5) return state;
+
+    return {
+      ...state,
+      [room.title]: newRoom,
+    };
+  })
+  .on(setRoomChildren, (state, payload) => {
+    const room = state[payload.id];
+    const newChildren = room.children.length < payload.value
+      ? room.children.concat(new Array(payload.value - room.children.length).fill(0))
+      : room.children.slice(0, payload.value);
+    const newRoom = {
+      ...room,
+      children: newChildren,
+    };
+    const guestsCount = newRoom.adults + newRoom.children.length;
+
+    // Can't be more than 5 guests in room
+    if (guestsCount > 5) return state;
+
+    return {
+      ...state,
+      [room.title]: {
+        ...room,
+        children: newChildren,
+      },
+    };
   })
   .reset(resetGuests);
 

@@ -7,3 +7,13 @@ export interface RoomType {
 export interface RoomsMap {
   [id: string]: RoomType
 }
+
+export interface SetAdultsEvent {
+  id: string,
+  value: number,
+}
+
+export interface SetChildrenEvent {
+  id: string,
+  value: number,
+}
