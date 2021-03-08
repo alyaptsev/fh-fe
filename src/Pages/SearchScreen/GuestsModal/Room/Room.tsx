@@ -79,6 +79,9 @@ const Room: React.FC<RoomProps> = ({
         <ChildrenAges>
           {room.children.map((age, idx) => (
             <StyledChildrenAge
+              // useless but *required*
+              // eslint-disable-next-line
+              key={`child-${idx}`}
               idx={idx}
               age={age}
               title={`Child ${idx + 1}`}

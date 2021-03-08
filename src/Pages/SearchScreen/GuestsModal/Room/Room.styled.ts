@@ -53,7 +53,7 @@ export const ChildrenAges = styled.div`
 `;
 
 export const StyledChildrenAge = styled(ChildrenAge)`
-  &:not(:first-child) {
+  &:not(:first-of-type) {
     margin-top: 12px;
   }
 `;

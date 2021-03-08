@@ -21,7 +21,7 @@ const Select: React.FC<SelectProps> = ({
     >
       <option value="" disabled>{placeholder}</option>
       {options.map((option) => (
-        <option value={option.value}>{option.title}</option>
+        <option key={option.value} value={option.value}>{option.title}</option>
       ))}
     </StyledSelect>
     <Arrow><Icon icon="down-arrow" size="m" /></Arrow>
