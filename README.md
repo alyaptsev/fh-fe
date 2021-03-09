@@ -1,6 +1,7 @@
 # FindHotel Assignment
 
 Source: [https://github.com/FindHotel/fh-fe-assignment](https://github.com/FindHotel/fh-fe-assignment)
+Solution explanations can be found [here](./EXPLANATIONS.md)
 
 ### Instructions
 
