@@ -3,6 +3,7 @@ import { useStore } from 'effector-react';
 import Modal from '@ui/Modal';
 import Icon from '@ui/Icon';
 import {
+  MAX_ROOMS_COUNT,
   $rooms,
   $roomsCount,
   $guestsCount,
@@ -63,6 +64,7 @@ const GuestsModal: React.FC<GuestsModalProps> = ({
             <StyledRoom
               key={room.title}
               id={room.title}
+              // Can't remove first room
               removable={idx !== 0}
             />
           ))}
@@ -70,7 +72,7 @@ const GuestsModal: React.FC<GuestsModalProps> = ({
             size="l"
             buttonTheme="outlined"
             onClick={onAddRoomClick}
-            disabled={roomsCount >= 8}
+            disabled={roomsCount >= MAX_ROOMS_COUNT}
           >
             <IconInButton
               icon="plus"

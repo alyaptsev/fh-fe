@@ -9,6 +9,10 @@ import {
   deleteRoomChild,
   resetGuests,
 } from './guests.actions';
+import {
+  MAX_ROOMS_COUNT,
+  MAX_ROOM_GUESTS,
+} from './guests.constants';
 import { RoomsMap } from './guests.types';
 
 const initialStore: RoomsMap = {
@@ -37,8 +41,8 @@ export const $roomsMap = guestsDomain
   .on(addRoom, (state) => {
     const roomsCount = Object.keys(state).length;
 
-    // Can't be more than 8 rooms
-    if (roomsCount < 8) {
+    // Rooms count restriction
+    if (roomsCount < MAX_ROOMS_COUNT) {
       const newRoomTitle = `Room ${roomsCount + 1}`;
 
       return {
@@ -66,8 +70,8 @@ export const $roomsMap = guestsDomain
     };
     const guestsCount = newRoom.adults + newRoom.children.length;
 
-    // Can't be more than 5 guests in room
-    if (guestsCount > 5) return state;
+    // Guests per room restriction
+    if (guestsCount > MAX_ROOM_GUESTS) return state;
 
     return {
       ...state,
@@ -85,8 +89,8 @@ export const $roomsMap = guestsDomain
     };
     const guestsCount = newRoom.adults + newRoom.children.length;
 
-    // Can't be more than 5 guests in room
-    if (guestsCount > 5) return state;
+    // Guests per room restriction
+    if (guestsCount > MAX_ROOM_GUESTS) return state;
 
     return {
       ...state,

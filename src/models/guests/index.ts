@@ -1,4 +1,5 @@
 export * from './guests.actions';
+export * from './guests.constants';
 export {
   $rooms,
   $roomsCount,

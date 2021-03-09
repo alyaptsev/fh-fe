@@ -2,6 +2,11 @@ import React from 'react';
 import { useStoreMap } from 'effector-react';
 import Counter from '@ui/Counter';
 import {
+  MAX_ROOM_GUESTS,
+  MIN_ADULTS_PER_ROOM,
+  MAX_ADULTS_PER_ROOM,
+  MIN_CHILDREN_PER_ROOM,
+  MAX_CHILDREN_PER_ROOM,
   $rooms,
   removeRoom,
   setRoomAdults,
@@ -19,8 +24,6 @@ import {
 } from './Room.styled';
 import { RoomProps } from './Room.types';
 
-const GUESTS_LIMIT = 5;
-
 const Room: React.FC<RoomProps> = ({
   id,
   removable,
@@ -32,7 +35,13 @@ const Room: React.FC<RoomProps> = ({
     fn: (rooms, [roomId]) => rooms.find(({ title }) => title === roomId),
   })!;
 
-  const guestsCount = room.adults + room.children.length;
+  const roomGuestsCount = room.adults + room.children.length;
+  const maxAdultsCount = roomGuestsCount >= MAX_ROOM_GUESTS
+    ? room.adults
+    : MAX_ADULTS_PER_ROOM;
+  const maxChildrenCount = roomGuestsCount >= MAX_ROOM_GUESTS
+    ? room.children.length
+    : MAX_CHILDREN_PER_ROOM;
 
   const onRoomRemove = () => removeRoom(room.title);
 
@@ -59,8 +68,8 @@ const Room: React.FC<RoomProps> = ({
         Adults
         <Counter
           value={room.adults}
-          minValue={1}
-          maxValue={guestsCount >= GUESTS_LIMIT ? room.adults : 5}
+          minValue={MIN_ADULTS_PER_ROOM}
+          maxValue={maxAdultsCount}
           onChange={onAdultChange}
         />
       </GuestCounter>
@@ -69,8 +78,8 @@ const Room: React.FC<RoomProps> = ({
         Children
         <Counter
           value={room.children.length}
-          minValue={0}
-          maxValue={guestsCount >= GUESTS_LIMIT ? room.children.length : 3}
+          minValue={MIN_CHILDREN_PER_ROOM}
+          maxValue={maxChildrenCount}
           onChange={onChildrenChange}
         />
       </GuestCounter>
